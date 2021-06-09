@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+boxsdk = "*"
+psycopg2 = "*"
+django-debug-toolbar = "*"
+
+[dev-packages]
+black = "==21.5b2"
+django-extensions = "*"
+
+
+[requires]
+python_version = "3.9"
