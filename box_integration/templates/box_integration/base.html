@@ -5,7 +5,8 @@
     <title>Box Integration</title>
 </head>
 <body>
-    Top Page<br>
-    Your access token: {{ request.session.access_token }}<br>
+    トップページ<br>
+    アクセストークン: {{ request.session.access_token }}<br>
+    <a href="{% url 'box_integration:access_token_destroy_view' %}">アクセストークンをクリアする</a>
 </body>
 </html>

@@ -18,6 +18,7 @@ $ docker-compose up -d
 * Django APサーバ
 
 ```shell
+$ pipenv shell
 # 初回起動の場合
 # $ python manage.py migrate
 $ python manage.py runserver
@@ -40,3 +41,18 @@ insert into box_config (app_environment, app_client_id, app_secret, create_dt, u
 ### 以下のURLにアクセス
 
 ```http://localhost:8000/box_api```
+
+
+### 備忘録
+
+#### Box Python SDKのドキュメント
+    * https://box-python-sdk.readthedocs.io/en/latest/index.html
+
+#### リフレッシュトークンの利用について（確証はまだない）
+
+* おそらく、コンテキストプロセッサーで、各リクエスト処理にアクセストークンの検証処理を差し込むイメージ。
+  *  リクエスト時にアクセストークンの有効期限(1時間)が切れていなかった場合
+      * -> セッションのアクセストークンで各ページからBox APIを呼ぶ
+  * リクエスト時にアクセストークンの有効期限(1時間)が切れていた場合
+    * リクエスト失敗をハンドリング
+    * リフレッシュトークンの期限を検証し、発行日(?)から60日以内であれば、リフレッシュトークンを元にアクセストークンを再度取得する

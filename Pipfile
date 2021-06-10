@@ -8,10 +8,10 @@ django = "*"
 boxsdk = "*"
 psycopg2 = "*"
 django-debug-toolbar = "*"
+django-extensions = "*"
 
 [dev-packages]
 black = "==21.5b2"
-django-extensions = "*"
 
 
 [requires]

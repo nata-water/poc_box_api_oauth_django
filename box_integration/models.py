@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from datetime import datetime
+
+from django.utils import timezone
 
 
 class AppUser(AbstractUser):
@@ -12,7 +13,12 @@ class AppUser(AbstractUser):
     class Meta:
         db_table = "app_user"
 
-    pass
+    email = models.EmailField(null=True, blank=True)
+    refresh_token = models.CharField(max_length=500, null=True, blank=True)
+    last_authorized_dt = models.DateTimeField(auto_now=True)
+    box_user_id = models.CharField(max_length=50, null=True, blank=True)
+    create_dt = models.DateTimeField(default=timezone.now)
+    update_dt = models.DateTimeField(auto_now=True)
 
 
 class BoxConfig(models.Model):
@@ -22,7 +28,7 @@ class BoxConfig(models.Model):
     app_environment = models.CharField(max_length=50)
     app_client_id = models.CharField(max_length=255)
     app_secret = models.CharField(max_length=255)
-    create_dt = models.DateTimeField(default=datetime.now)
+    create_dt = models.DateTimeField(default=timezone.now)
     update_dt = models.DateTimeField(auto_now=True)
 
     def __str__(self):
